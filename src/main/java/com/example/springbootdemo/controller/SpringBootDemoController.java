@@ -1,10 +1,13 @@
 package com.example.springbootdemo.controller;
 
+import com.example.springbootdemo.entity.Book;
+import com.example.springbootdemo.service.BookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,14 +15,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @RequestMapping("/demo")
 public class SpringBootDemoController {
+    private final BookService bookService;
 
-    @GetMapping
+    @GetMapping("/hello")
     public ResponseEntity<String> hello(){
         return ResponseEntity.status(HttpStatus.OK).body("hello");
     }
 
     @PostMapping("/book")
-    public ResponseEntity<String> createBook() {
-        return ResponseEntity.status(HttpStatus.OK).body("book");
+    public ResponseEntity<String> createBook(@RequestBody Book book) {
+
+        var result = bookService.createBook(book);
+        return ResponseEntity.status(HttpStatus.CREATED).body(result);
     }
 }
