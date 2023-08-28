@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class BookService {
 
-    public String createBook(Book book) {
-        return "Book %s is created.".formatted(book);
-    }
+  public final String createBook(Book book) {
+    return "Book %s is created.".formatted(book);
+  }
 }

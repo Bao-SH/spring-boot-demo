@@ -15,17 +15,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @RequestMapping("/demo")
 public class SpringBootDemoController {
-    private final BookService bookService;
+  private final BookService bookService;
 
-    @GetMapping("/hello")
-    public ResponseEntity<String> hello(){
-        return ResponseEntity.status(HttpStatus.OK).body("hello");
-    }
+  @GetMapping("/hello")
+  public final ResponseEntity<String> hello() {
+    return ResponseEntity.status(HttpStatus.OK).body("hello");
+  }
 
-    @PostMapping("/book")
-    public ResponseEntity<String> createBook(@RequestBody Book book) {
+  @PostMapping("/book")
+  public final ResponseEntity<String> createBook(@RequestBody final Book book) {
 
-        var result = bookService.createBook(book);
-        return ResponseEntity.status(HttpStatus.CREATED).body(result);
-    }
+    var result = bookService.createBook(book);
+    return ResponseEntity.status(HttpStatus.CREATED).body(result);
+  }
 }
